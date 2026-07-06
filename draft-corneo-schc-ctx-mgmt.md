@@ -1,33 +1,36 @@
 ---
-title: ""
-abbrev: "SCHC Context Management Extensions"
+title: "SCHC Context Management Extensions"
+abbrev: "Context Management"
 category: std
-
+ipr: trust200902
 docname: draft-corneo-schc-ctx-mgmt-latest
 submissiontype: IETF
-number:
-date:
-consensus: true
-v: 3
 area: INT
-workgroup: SCHC WG
+workgroup: "Static Context Header Compression"
+pi: [toc, sortrefs, symrefs]
+
 keyword:
  - SCHC
  - Context management
-venue:
-  group: SCHC
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: https://github.com/lorenzocorneo/draft-corneo-schc-ctx-mgmt
-  latest: https://example.com/LATEST
+
+<!-- venue: -->
+<!--   group: SCHC -->
+<!--   type: Working Group -->
+<!--   mail: WG@example.com -->
+<!--   arch: https://example.com/WG -->
+<!--   github: https://github.com/lorenzocorneo/draft-corneo-schc-ctx-mgmt -->
+<!--   latest: https://example.com/LATEST -->
 
 author:
   - name: Lorenzo Corneo
     org: Ericsson
+    city: Jorvas
+    country: Finland
     email: lorenzo.corneo@ericsson.com
   - name: Magnus Westerlund
     org: Ericsson
+    city: Kista
+    country: Sweden
     email: magnus.westerlund@ericsson.com
 
 normative:
