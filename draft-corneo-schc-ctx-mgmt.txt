@@ -197,42 +197,55 @@ Table of Contents
    The following example illustrates the use of ref(N).  Consider a
    dedicated IPv6 compression rule (Rule 2):
 
-   Rule 2
-   +----------------+--+--+--+---------+--------+------------+
-   | FID            |FL|FP|DI| TV      | MO     | CDA        |
-   +----------------+--+--+--+---------+--------+------------+
-   |IPv6 Version    |4 |1 |Bi|6        | ignore | not-sent   |
-   |IPv6 Diffserv   |8 |1 |Bi|0        | equal  | not-sent   |
-   |IPv6 Flow Label |20|1 |Bi|0        | equal  | not-sent   |
-   |IPv6 Length     |16|1 |Bi|         | ignore | compute-*  |
-   |IPv6 Next Header|8 |1 |Bi|17       | equal  | not-sent   |
-   |IPv6 Hop Limit  |8 |1 |Bi|255      | ignore | not-sent   |
-   |IPv6 DevPrefix  |64|1 |Bi|FE80::/64| equal  | not-sent   |
-   |IPv6 DevIID     |64|1 |Bi|         | ignore | DevIID     |
-   |IPv6 AppPrefix  |64|1 |Bi|FE80::/64| equal  | not-sent   |
-   |IPv6 AppIID     |64|1 |Bi|::1      | equal  | not-sent   |
-   +----------------+--+--+--+---------+--------+------------+
+   +==================+====+====+====+===========+========+===========+
+   | FID              | FL | FP | DI | TV        | MO     | CDA       |
+   +==================+====+====+====+===========+========+===========+
+   | IPv6 Version     | 4  | 1  | Bi | 6         | ignore | not-sent  |
+   +------------------+----+----+----+-----------+--------+-----------+
+   | IPv6 Diffserv    | 8  | 1  | Bi | 0         | equal  | not-sent  |
+   +------------------+----+----+----+-----------+--------+-----------+
+   | IPv6 Flow Label  | 20 | 1  | Bi | 0         | equal  | not-sent  |
+   +------------------+----+----+----+-----------+--------+-----------+
+   | IPv6 Length      | 16 | 1  | Bi |           | ignore | compute-* |
+   +------------------+----+----+----+-----------+--------+-----------+
+   | IPv6 Next Header | 8  | 1  | Bi | 17        | equal  | not-sent  |
+   +------------------+----+----+----+-----------+--------+-----------+
+   | IPv6 Hop Limit   | 8  | 1  | Bi | 255       | ignore | not-sent  |
+   +------------------+----+----+----+-----------+--------+-----------+
+   | IPv6 DevPrefix   | 64 | 1  | Bi | FE80::/64 | equal  | not-sent  |
+   +------------------+----+----+----+-----------+--------+-----------+
+   | IPv6 DevIID      | 64 | 1  | Bi |           | ignore | DevIID    |
+   +------------------+----+----+----+-----------+--------+-----------+
+   | IPv6 AppPrefix   | 64 | 1  | Bi | FE80::/64 | equal  | not-sent  |
+   +------------------+----+----+----+-----------+--------+-----------+
+   | IPv6 AppIID      | 64 | 1  | Bi | ::1       | equal  | not-sent  |
+   +------------------+----+----+----+-----------+--------+-----------+
 
-                 Figure 1: Dedicated IPv6 Compression Rule
+             Table 1: Rule 2: Dedicated IPv6 Compression Rule
 
    A UDP compression rule can then reference Rule 2 for the IPv6
    portion:
 
-   Rule 3
-   +--------------+--+--+--+---+-------+------------+
-   | FID          |FL|FP|DI| TV| MO    | CDA        |
-   +--------------+--+--+--+---+-------+------------+
-   |IPv6 Rule     |  |1 |Bi|   | ignore| ref(2)     |
-   +--------------+--+--+--+---+-------+------------+
-   |UDP DevPort   |16|1 |Dw|123| equal | not-sent   |
-   |UDP DevPort   |16|1 |Up|124| equal | not-sent   |
-   |UDP AppPort   |16|1 |Dw|124| equal | not-sent   |
-   |UDP AppPort   |16|1 |Up|123| equal | not-sent   |
-   |UDP Length    |16|1 |Bi|   | ignore| compute-*  |
-   |UDP checksum  |16|1 |Bi|   | ignore| compute-*  |
-   +--------------+--+--+--+---+-------+------------+
+        +==============+====+====+====+=====+========+===========+
+        | FID          | FL | FP | DI | TV  | MO     | CDA       |
+        +==============+====+====+====+=====+========+===========+
+        | IPv6 Rule    |    | 1  | Bi |     | ignore | ref(2)    |
+        +--------------+----+----+----+-----+--------+-----------+
+        | UDP DevPort  | 16 | 1  | Dw | 123 | equal  | not-sent  |
+        +--------------+----+----+----+-----+--------+-----------+
+        | UDP DevPort  | 16 | 1  | Up | 124 | equal  | not-sent  |
+        +--------------+----+----+----+-----+--------+-----------+
+        | UDP AppPort  | 16 | 1  | Dw | 124 | equal  | not-sent  |
+        +--------------+----+----+----+-----+--------+-----------+
+        | UDP AppPort  | 16 | 1  | Up | 123 | equal  | not-sent  |
+        +--------------+----+----+----+-----+--------+-----------+
+        | UDP Length   | 16 | 1  | Bi |     | ignore | compute-* |
+        +--------------+----+----+----+-----+--------+-----------+
+        | UDP checksum | 16 | 1  | Bi |     | ignore | compute-* |
+        +--------------+----+----+----+-----+--------+-----------+
 
-           Figure 2: UDP Rule Referencing IPv6 Rule 2 via ref(N)
+          Table 2: Rule 3: UDP Rule Referencing IPv6 Rule 2 via
+                                  ref(N)
 
    Similarly, a TCP compression rule can reuse the same IPv6 rule.
    However, since Rule 2 specifies Next Header = 17 (UDP) with MO =
@@ -242,22 +255,28 @@ Table of Contents
    demonstrating why ref-edit is necessary when a referenced rule
    contains a field value that differs for the referencing protocol:
 
-   Rule 4
-   +-----------------+--+--+--+---+-------+--------------+
-   | FID             |FL|FP|DI| TV| MO    | CDA          |
-   +-----------------+--+--+--+---+-------+--------------+
-   |IPv6 Rule        |  |1 |Bi|   | ignore| ref-edit(2,1)|
-   |IPv6 Next Header |8 |1 |Bi|6  | equal | not-sent     |
-   +-----------------+--+--+--+---+-------+--------------+
-   |TCP DevPort      |16|1 |Dw|321| equal | not-sent     |
-   |TCP DevPort      |16|1 |Up|421| equal | not-sent     |
-   |TCP AppPort      |16|1 |Dw|421| equal | not-sent     |
-   |TCP AppPort      |16|1 |Up|321| equal | not-sent     |
-   |TCP Length       |16|1 |Bi|   | ignore| compute-*    |
-   |TCP checksum     |16|1 |Bi|   | ignore| compute-*    |
-   +-----------------+--+--+--+---+-------+--------------+
+    +==================+====+====+====+=====+========+===============+
+    | FID              | FL | FP | DI | TV  | MO     | CDA           |
+    +==================+====+====+====+=====+========+===============+
+    | IPv6 Rule        |    | 1  | Bi |     | ignore | ref-edit(2,1) |
+    +------------------+----+----+----+-----+--------+---------------+
+    | IPv6 Next Header | 8  | 1  | Bi | 6   | equal  | not-sent      |
+    +------------------+----+----+----+-----+--------+---------------+
+    | TCP DevPort      | 16 | 1  | Dw | 321 | equal  | not-sent      |
+    +------------------+----+----+----+-----+--------+---------------+
+    | TCP DevPort      | 16 | 1  | Up | 421 | equal  | not-sent      |
+    +------------------+----+----+----+-----+--------+---------------+
+    | TCP AppPort      | 16 | 1  | Dw | 421 | equal  | not-sent      |
+    +------------------+----+----+----+-----+--------+---------------+
+    | TCP AppPort      | 16 | 1  | Up | 321 | equal  | not-sent      |
+    +------------------+----+----+----+-----+--------+---------------+
+    | TCP Length       | 16 | 1  | Bi |     | ignore | compute-*     |
+    +------------------+----+----+----+-----+--------+---------------+
+    | TCP checksum     | 16 | 1  | Bi |     | ignore | compute-*     |
+    +------------------+----+----+----+-----+--------+---------------+
 
-        Figure 3: TCP Rule Referencing IPv6 Rule 2 via ref-edit(N,M)
+        Table 3: Rule 4: TCP Rule Referencing IPv6 Rule 2 via ref-
+                                edit(N,M)
 
    In both cases, when the compressor/decompressor encounters a
    referencing CDA, it loads Rule 2 and applies it to the IPv6 header
@@ -289,14 +308,15 @@ Table of Contents
 
    The following example modifies the AppIID field from Rule 2:
 
-   +--------------+---+--+--+---------+--------+--------------+
-   | FID          |FL |FP|DI| TV      | MO     | CDA          |
-   +--------------+---+--+--+---------+--------+--------------+
-   |IPv6 Rule     |   |1 |Bi|         | ignore | ref-edit(2,1)|
-   |IPv6 AppIID   |64 |1 |Bi| ::3     | equal  | not-sent     |
-   +--------------+---+--+--+---------+--------+--------------+
+       +=============+====+====+====+=====+========+===============+
+       | FID         | FL | FP | DI | TV  | MO     | CDA           |
+       +=============+====+====+====+=====+========+===============+
+       | IPv6 Rule   |    | 1  | Bi |     | ignore | ref-edit(2,1) |
+       +-------------+----+----+----+-----+--------+---------------+
+       | IPv6 AppIID | 64 | 1  | Bi | ::3 | equal  | not-sent      |
+       +-------------+----+----+----+-----+--------+---------------+
 
-           Figure 4: Using ref-edit to Override AppIID in Rule 2
+            Table 4: Using ref-edit to Override AppIID in Rule 2
 
    Here, the decompressor loads Rule 2, locates the IPv6 AppIID field
    description, replaces its TV with ::3, and then applies the modified
@@ -458,28 +478,51 @@ Table of Contents
    The following example shows an IPv6 rule using match-mapping with
    branch on the Next Header field:
 
-   Rule 2
-   +----------------+--+--+--+---------+--------+--------------+------+
-   | FID            |FL|FP|DI| TV      | MO     | CDA          | Sent |
-   +----------------+--+--+--+---------+--------+--------------+------+
-   |IPv6 Version    |4 |1 |Bi|6        | ignore | not-sent     |      |
-   |IPv6 Diffserv   |8 |1 |Bi|0        | equal  | not-sent     |      |
-   |IPv6 Flow Label |20|1 |Bi|0        | equal  | not-sent     |      |
-   |IPv6 Length     |16|1 |Bi|         | ignore | compute-*    |      |
-   |IPv6 Next Header|8 |1 |Bi|17       | mapping| branch(3)    |0b000 |
-   |                |  |  |  |6        | mapping| branch(4)    |0b001 |
-   |                |  |  |  |44       | mapping| branch(5)    |0b010 |
-   |                |  |  |  |60       | mapping| branch(6)    |0b011 |
-   |                |  |  |  |41       | mapping| branch(7)    |0b100 |
-   |                |  |  |  |59       | mapping| branch(NULL) |0b101 |
-   |IPv6 Hop Limit  |8 |1 |Bi|255      | ignore | not-sent     |      |
-   |IPv6 DevPrefix  |64|1 |Bi|FE80::/64| equal  | not-sent     |      |
-   |IPv6 DevIID     |64|1 |Bi|         | ignore | DevIID       |      |
-   |IPv6 AppPrefix  |64|1 |Bi|FE80::/64| equal  | not-sent     |      |
-   |IPv6 AppIID     |64|1 |Bi|::1      | equal  | not-sent     |      |
-   +----------------+--+--+--+---------+--------+--------------+------+
+    +===========+==+==+==+===========+=========+==============+=======+
+    | FID       |FL|FP|DI| TV        | MO      | CDA          | Sent  |
+    +===========+==+==+==+===========+=========+==============+=======+
+    | IPv6      |4 |1 |Bi| 6         | ignore  | not-sent     |       |
+    | Version   |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6      |8 |1 |Bi| 0         | equal   | not-sent     |       |
+    | Diffserv  |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6 Flow |20|1 |Bi| 0         | equal   | not-sent     |       |
+    | Label     |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6      |16|1 |Bi|           | ignore  | compute-*    |       |
+    | Length    |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6 Next |8 |1 |Bi| 17        | mapping | branch(3)    | 0b000 |
+    | Header    |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    |           |  |  |  | 6         | mapping | branch(4)    | 0b001 |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    |           |  |  |  | 44        | mapping | branch(5)    | 0b010 |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    |           |  |  |  | 60        | mapping | branch(6)    | 0b011 |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    |           |  |  |  | 41        | mapping | branch(7)    | 0b100 |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    |           |  |  |  | 59        | mapping | branch(NULL) | 0b101 |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6 Hop  |8 |1 |Bi| 255       | ignore  | not-sent     |       |
+    | Limit     |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6      |64|1 |Bi| FE80::/64 | equal   | not-sent     |       |
+    | DevPrefix |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6      |64|1 |Bi|           | ignore  | DevIID       |       |
+    | DevIID    |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6      |64|1 |Bi| FE80::/64 | equal   | not-sent     |       |
+    | AppPrefix |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6      |64|1 |Bi| ::1       | equal   | not-sent     |       |
+    | AppIID    |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
 
-               Figure 5: IPv6 Rule with branch on Next Header
+           Table 5: Rule 2: IPv6 Rule with branch on Next Header
 
    The mapping table for the Next Header field is:
 
@@ -499,7 +542,7 @@ Table of Contents
                   | 59 | NULL (No Next Hdr) | 0b101    |
                   +----+--------------------+----------+
 
-                   Table 1: Next Header Branch Mapping
+                   Table 6: Next Header Branch Mapping
 
    When compressing, if the IPv6 Next Header field contains 17 (UDP),
    the compressor encodes 0b000 as residual and queues Rule 3 for
@@ -533,22 +576,29 @@ Table of Contents
    The following example shows match-rule used in a UDP rule to branch
    into RTP or CoAP compression:
 
-  Rule 3
-  +--------------+--+--+--+----+-----------------+--------------+------+
-  | FID          |FL|FP|DI| TV | MO              | CDA          | Sent |
-  +--------------+--+--+--+----+-----------------+--------------+------+
-  |UDP.SrcPort   |16|1 |Dw|1123| equal           | not-sent     |      |
-  |UDP.SrcPort   |16|1 |Up|1124| equal           | not-sent     |      |
-  |UDP.DstPort   |16|1 |Dw|1124| equal           | not-sent     |      |
-  |UDP.DstPort   |16|1 |Up|1123| equal           | not-sent     |      |
-  |UDP.Length    |16|1 |Bi|    | ignore          | compute-*    |      |
-  |UDP.checksum  |16|1 |Bi|    | ignore          | compute-*    |      |
-  |UDP.PayProto  |0 |1 |Bi|    | match-rule(8)   | branch(8)    | 0b00 |
-  |              |  |  |  |    | match-rule(9)   | branch(9)    | 0b01 |
-  |              |  |  |  |    | match-rule(NULL)| branch(NULL) | 0b10 |
-  +--------------+--+--+--+----+-----------------+--------------+------+
+    +============+==+==+==+====+==================+==============+====+
+    |FID         |FL|FP|DI|TV  | MO               | CDA          |Sent|
+    +============+==+==+==+====+==================+==============+====+
+    |UDP.SrcPort |16|1 |Dw|1123| equal            | not-sent     |    |
+    +------------+--+--+--+----+------------------+--------------+----+
+    |UDP.SrcPort |16|1 |Up|1124| equal            | not-sent     |    |
+    +------------+--+--+--+----+------------------+--------------+----+
+    |UDP.DstPort |16|1 |Dw|1124| equal            | not-sent     |    |
+    +------------+--+--+--+----+------------------+--------------+----+
+    |UDP.DstPort |16|1 |Up|1123| equal            | not-sent     |    |
+    +------------+--+--+--+----+------------------+--------------+----+
+    |UDP.Length  |16|1 |Bi|    | ignore           | compute-*    |    |
+    +------------+--+--+--+----+------------------+--------------+----+
+    |UDP.checksum|16|1 |Bi|    | ignore           | compute-*    |    |
+    +------------+--+--+--+----+------------------+--------------+----+
+    |UDP.PayProto|0 |1 |Bi|    | match-rule(8)    | branch(8)    |0b00|
+    +------------+--+--+--+----+------------------+--------------+----+
+    |            |  |  |  |    | match-rule(9)    | branch(9)    |0b01|
+    +------------+--+--+--+----+------------------+--------------+----+
+    |            |  |  |  |    | match-rule(NULL) | branch(NULL) |0b10|
+    +------------+--+--+--+----+------------------+--------------+----+
 
-         Figure 6: UDP Rule with match-rule Branching to RTP/CoAP
+      Table 7: Rule 3: UDP Rule with match-rule Branching to RTP/CoAP
 
    Here, after compressing the UDP header, the compressor attempts to
    match Rule 8 (RTP) against the UDP payload.  If RTP matching
@@ -585,10 +635,10 @@ Table of Contents
 
    Without referencing CDAs, compressing IPv6/UDP and IPv6/TCP requires
    two complete rules, each repeating 10 IPv6 field descriptions.  With
-   referencing CDAs, a single IPv6 rule (Rule 2 in Figure 1) is defined
-   once and referenced by the UDP rule (Rule 3 in Figure 2) using
-   ref(2), and the TCP rule (Rule 4 in Figure 3) using ref-edit(2,1) to
-   override the Next Header value from 17 to 6.
+   referencing CDAs, a single IPv6 rule (Rule 2 in Table 1) is defined
+   once and referenced by the UDP rule (Rule 3 in Table 2) using ref(2),
+   and the TCP rule (Rule 4 in Table 3) using ref-edit(2,1) to override
+   the Next Header value from 17 to 6.
 
    For a context with 3 IPv6 address variants and 4 transport/
    application protocols, the traditional approach requires 12 rules
@@ -600,31 +650,38 @@ Table of Contents
 6.2.  Multi-Protocol Branching with branch
 
    This example demonstrates branch used with match-mapping to handle
-   IPv6 packets with different next headers.  Rule 2 in Figure 5 uses
-   the IPv6 Next Header field to branch into different rule fragments
-   for UDP, TCP, IPv6 Fragment Header, Destination Options, and IPv6-in-
-   IPv6 tunneling.
+   IPv6 packets with different next headers.  Rule 2 in Table 5 uses the
+   IPv6 Next Header field to branch into different rule fragments for
+   UDP, TCP, IPv6 Fragment Header, Destination Options, and IPv6-in-IPv6
+   tunneling.
 
    The following rule fragments are referenced by the branch entries:
 
 6.2.1.  UDP Rule Fragment (Rule 3)
 
-  Rule 3
-  +--------------+--+--+--+----+-----------------+--------------+------+
-  | FID          |FL|FP|DI| TV | MO              | CDA          | Sent |
-  +--------------+--+--+--+----+-----------------+--------------+------+
-  |UDP.SrcPort   |16|1 |Dw|1123| equal           | not-sent     |      |
-  |UDP.SrcPort   |16|1 |Up|1124| equal           | not-sent     |      |
-  |UDP.DstPort   |16|1 |Dw|1124| equal           | not-sent     |      |
-  |UDP.DstPort   |16|1 |Up|1123| equal           | not-sent     |      |
-  |UDP.Length    |16|1 |Bi|    | ignore          | compute-*    |      |
-  |UDP.checksum  |16|1 |Bi|    | ignore          | compute-*    |      |
-  |UDP.PayProto  |0 |1 |Bi|    | match-rule(8)   | branch(8)    | 0b00 |
-  |              |  |  |  |    | match-rule(9)   | branch(9)    | 0b01 |
-  |              |  |  |  |    | match-rule(NULL)| branch(NULL) | 0b10 |
-  +--------------+--+--+--+----+-----------------+--------------+------+
+    +============+==+==+==+====+==================+==============+====+
+    |FID         |FL|FP|DI|TV  | MO               | CDA          |Sent|
+    +============+==+==+==+====+==================+==============+====+
+    |UDP.SrcPort |16|1 |Dw|1123| equal            | not-sent     |    |
+    +------------+--+--+--+----+------------------+--------------+----+
+    |UDP.SrcPort |16|1 |Up|1124| equal            | not-sent     |    |
+    +------------+--+--+--+----+------------------+--------------+----+
+    |UDP.DstPort |16|1 |Dw|1124| equal            | not-sent     |    |
+    +------------+--+--+--+----+------------------+--------------+----+
+    |UDP.DstPort |16|1 |Up|1123| equal            | not-sent     |    |
+    +------------+--+--+--+----+------------------+--------------+----+
+    |UDP.Length  |16|1 |Bi|    | ignore           | compute-*    |    |
+    +------------+--+--+--+----+------------------+--------------+----+
+    |UDP.checksum|16|1 |Bi|    | ignore           | compute-*    |    |
+    +------------+--+--+--+----+------------------+--------------+----+
+    |UDP.PayProto|0 |1 |Bi|    | match-rule(8)    | branch(8)    |0b00|
+    +------------+--+--+--+----+------------------+--------------+----+
+    |            |  |  |  |    | match-rule(9)    | branch(9)    |0b01|
+    +------------+--+--+--+----+------------------+--------------+----+
+    |            |  |  |  |    | match-rule(NULL) | branch(NULL) |0b10|
+    +------------+--+--+--+----+------------------+--------------+----+
 
-            Figure 7: UDP Rule Fragment with Payload Branching
+         Table 8: Rule 3: UDP Rule Fragment with Payload Branching
 
    Rule 3 compresses the UDP header and then uses match-rule to
    determine whether the payload is RTP (Rule 8), CoAP (Rule 9), or
@@ -632,19 +689,23 @@ Table of Contents
 
 6.2.2.  TCP Rule Fragment (Rule 4)
 
-   Rule 4
-   +--------------+--+--+--+----+--------+------------+------+
-   | FID          |FL|FP|DI| TV | MO     | CDA        | Sent |
-   +--------------+--+--+--+----+--------+------------+------+
-   |TCP.SrcPort   |16|1 |Dw|1321| equal  | not-sent   |      |
-   |TCP.SrcPort   |16|1 |Up|1421| equal  | not-sent   |      |
-   |TCP.DstPort   |16|1 |Dw|1421| equal  | not-sent   |      |
-   |TCP.DstPort   |16|1 |Up|1321| equal  | not-sent   |      |
-   |TCP.Length    |16|1 |Bi|    | ignore | compute-*  |      |
-   |TCP.checksum  |16|1 |Bi|    | ignore | compute-*  |      |
-   +--------------+--+--+--+----+--------+------------+------+
+    +==============+====+====+====+======+========+===========+======+
+    | FID          | FL | FP | DI | TV   | MO     | CDA       | Sent |
+    +==============+====+====+====+======+========+===========+======+
+    | TCP.SrcPort  | 16 | 1  | Dw | 1321 | equal  | not-sent  |      |
+    +--------------+----+----+----+------+--------+-----------+------+
+    | TCP.SrcPort  | 16 | 1  | Up | 1421 | equal  | not-sent  |      |
+    +--------------+----+----+----+------+--------+-----------+------+
+    | TCP.DstPort  | 16 | 1  | Dw | 1421 | equal  | not-sent  |      |
+    +--------------+----+----+----+------+--------+-----------+------+
+    | TCP.DstPort  | 16 | 1  | Up | 1321 | equal  | not-sent  |      |
+    +--------------+----+----+----+------+--------+-----------+------+
+    | TCP.Length   | 16 | 1  | Bi |      | ignore | compute-* |      |
+    +--------------+----+----+----+------+--------+-----------+------+
+    | TCP.checksum | 16 | 1  | Bi |      | ignore | compute-* |      |
+    +--------------+----+----+----+------+--------+-----------+------+
 
-                        Figure 8: TCP Rule Fragment
+                    Table 9: Rule 4: TCP Rule Fragment
 
 6.2.3.  IPv6 Fragment Header Rule Fragment (Rule 5)
 
@@ -652,23 +713,36 @@ Table of Contents
    The Next Header field in the fragment header uses branch to determine
    what protocol follows.
 
-   Rule 5
-   +----------------+--+--+--+---+--------+--------------+------+
-   | FID            |FL|FP|DI| TV| MO     | CDA          | Sent |
-   +----------------+--+--+--+---+--------+--------------+------+
-   |Frag Next Header|8 |1 |Bi|17 | mapping| branch(3)    |0b000 |
-   |                |  |  |  | 6 | mapping| branch(4)    |0b001 |
-   |                |  |  |  |60 | mapping| branch(6)    |0b010 |
-   |                |  |  |  |41 | mapping| branch(7)    |0b011 |
-   |                |  |  |  |59 | mapping| branch(NULL) |0b100 |
-   |Frag Reserved   |8 |1 |Bi|0  | ignore | not-sent     |      |
-   |Frag Offset     |13|1 |Bi|0  | equal  | not-sent     |      |
-   |Frag Res        |2 |1 |Bi|0  | equal  | not-sent     |      |
-   |Frag M flag     |1 |1 |Bi|1  | equal  | not-sent     |      |
-   |Frag Ident      |32|1 |Bi|   | ignore | value-sent   |      |
-   +----------------+--+--+--+---+--------+--------------+------+
+    +===========+====+====+====+====+=========+==============+=======+
+    | FID       | FL | FP | DI | TV | MO      | CDA          | Sent  |
+    +===========+====+====+====+====+=========+==============+=======+
+    | Frag Next | 8  | 1  | Bi | 17 | mapping | branch(3)    | 0b000 |
+    | Header    |    |    |    |    |         |              |       |
+    +-----------+----+----+----+----+---------+--------------+-------+
+    |           |    |    |    | 6  | mapping | branch(4)    | 0b001 |
+    +-----------+----+----+----+----+---------+--------------+-------+
+    |           |    |    |    | 60 | mapping | branch(6)    | 0b010 |
+    +-----------+----+----+----+----+---------+--------------+-------+
+    |           |    |    |    | 41 | mapping | branch(7)    | 0b011 |
+    +-----------+----+----+----+----+---------+--------------+-------+
+    |           |    |    |    | 59 | mapping | branch(NULL) | 0b100 |
+    +-----------+----+----+----+----+---------+--------------+-------+
+    | Frag      | 8  | 1  | Bi | 0  | ignore  | not-sent     |       |
+    | Reserved  |    |    |    |    |         |              |       |
+    +-----------+----+----+----+----+---------+--------------+-------+
+    | Frag      | 13 | 1  | Bi | 0  | equal   | not-sent     |       |
+    | Offset    |    |    |    |    |         |              |       |
+    +-----------+----+----+----+----+---------+--------------+-------+
+    | Frag Res  | 2  | 1  | Bi | 0  | equal   | not-sent     |       |
+    +-----------+----+----+----+----+---------+--------------+-------+
+    | Frag M    | 1  | 1  | Bi | 1  | equal   | not-sent     |       |
+    | flag      |    |    |    |    |         |              |       |
+    +-----------+----+----+----+----+---------+--------------+-------+
+    | Frag      | 32 | 1  | Bi |    | ignore  | value-sent   |       |
+    | Ident     |    |    |    |    |         |              |       |
+    +-----------+----+----+----+----+---------+--------------+-------+
 
-                Figure 9: IPv6 First Fragment Rule Fragment
+           Table 10: Rule 5: IPv6 First Fragment Rule Fragment
 
 6.2.4.  IPv6-in-IPv6 Tunneling Rule Fragment (Rule 7)
 
@@ -676,45 +750,73 @@ Table of Contents
    address prefixes than the outer header.  This rule does not include
    IPv6-in-IPv6 as a further nesting option.
 
-   Rule 7
-   +----------------+--+--+--+---------+--------+--------------+------+
-   | FID            |FL|FP|DI| TV      | MO     | CDA          | Sent |
-   +----------------+--+--+--+---------+--------+--------------+------+
-   |IPv6 Version    |4 |1 |Bi|6        | ignore | not-sent     |      |
-   |IPv6 Diffserv   |8 |1 |Bi|0        | equal  | not-sent     |      |
-   |IPv6 Flow Label |20|1 |Bi|0        | equal  | not-sent     |      |
-   |IPv6 Length     |16|1 |Bi|         | ignore | compute-*    |      |
-   |IPv6 Next Header|8 |1 |Bi|17       | mapping| branch(3)    |0b000 |
-   |                |  |  |  | 6       | mapping| branch(4)    |0b001 |
-   |                |  |  |  |44       | mapping| branch(5)    |0b010 |
-   |                |  |  |  |60       | mapping| branch(6)    |0b011 |
-   |                |  |  |  |59       | mapping| branch(NULL) |0b100 |
-   |IPv6 Hop Limit  |8 |1 |Bi|255      | ignore | not-sent     |      |
-   |IPv6 DevPrefix  |64|1 |Bi|2001::/64| equal  | not-sent     |      |
-   |IPv6 DevIID     |64|1 |Bi|         | ignore | DevIID       |      |
-   |IPv6 AppPrefix  |64|1 |Bi|2001::/64| equal  | not-sent     |      |
-   |IPv6 AppIID     |64|1 |Bi|::1      | equal  | not-sent     |      |
-   +----------------+--+--+--+---------+--------+--------------+------+
+    +===========+==+==+==+===========+=========+==============+=======+
+    | FID       |FL|FP|DI| TV        | MO      | CDA          | Sent  |
+    +===========+==+==+==+===========+=========+==============+=======+
+    | IPv6      |4 |1 |Bi| 6         | ignore  | not-sent     |       |
+    | Version   |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6      |8 |1 |Bi| 0         | equal   | not-sent     |       |
+    | Diffserv  |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6 Flow |20|1 |Bi| 0         | equal   | not-sent     |       |
+    | Label     |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6      |16|1 |Bi|           | ignore  | compute-*    |       |
+    | Length    |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6 Next |8 |1 |Bi| 17        | mapping | branch(3)    | 0b000 |
+    | Header    |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    |           |  |  |  | 6         | mapping | branch(4)    | 0b001 |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    |           |  |  |  | 44        | mapping | branch(5)    | 0b010 |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    |           |  |  |  | 60        | mapping | branch(6)    | 0b011 |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    |           |  |  |  | 59        | mapping | branch(NULL) | 0b100 |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6 Hop  |8 |1 |Bi| 255       | ignore  | not-sent     |       |
+    | Limit     |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6      |64|1 |Bi| 2001::/64 | equal   | not-sent     |       |
+    | DevPrefix |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6      |64|1 |Bi|           | ignore  | DevIID       |       |
+    | DevIID    |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6      |64|1 |Bi| 2001::/64 | equal   | not-sent     |       |
+    | AppPrefix |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
+    | IPv6      |64|1 |Bi| ::1       | equal   | not-sent     |       |
+    | AppIID    |  |  |  |           |         |              |       |
+    +-----------+--+--+--+-----------+---------+--------------+-------+
 
-                 Figure 10: Inner IPv6 Header Rule Fragment
+             Table 11: Rule 7: Inner IPv6 Header Rule Fragment
 
 6.2.5.  RTP Rule Fragment (Rule 8)
 
-   Rule 8
-   +----------------+--+--+--+---------+--------+------------+------+
-   | FID            |FL|FP|DI| TV      | MO     | CDA        | Sent |
-   +----------------+--+--+--+---------+--------+------------+------+
-   |RTP.version     |2 |1 |Bi|2        | equal  | not-sent   |      |
-   |RTP.padding     |1 |1 |Bi|0        | equal  | not-sent   |      |
-   |RTP.Extension   |1 |1 |Bi|0        | ignore | value-sent |      |
-   |RTP.csrc-count  |4 |1 |Bi|0b00     | MSB(2) | LSB(2)     |      |
-   |RTP.marker      |1 |1 |Bi|0        | ignore | value-sent |      |
-   |RTP.payloadType |7 |1 |Bi|0b1100000| MSB(2) | LSB(5)     |      |
-   |RTP.SeqNr       |16|1 |Bi|0        | ignore | value-sent |      |
-   |RTP.SSRC        |32|1 |Bi|0        | ignore | value-sent |      |
-   +----------------+--+--+--+---------+--------+------------+------+
+    +=================+==+==+==+===========+========+============+====+
+    | FID             |FL|FP|DI| TV        | MO     | CDA        |Sent|
+    +=================+==+==+==+===========+========+============+====+
+    | RTP.version     |2 |1 |Bi| 2         | equal  | not-sent   |    |
+    +-----------------+--+--+--+-----------+--------+------------+----+
+    | RTP.padding     |1 |1 |Bi| 0         | equal  | not-sent   |    |
+    +-----------------+--+--+--+-----------+--------+------------+----+
+    | RTP.Extension   |1 |1 |Bi| 0         | ignore | value-sent |    |
+    +-----------------+--+--+--+-----------+--------+------------+----+
+    | RTP.csrc-count  |4 |1 |Bi| 0b00      | MSB(2) | LSB(2)     |    |
+    +-----------------+--+--+--+-----------+--------+------------+----+
+    | RTP.marker      |1 |1 |Bi| 0         | ignore | value-sent |    |
+    +-----------------+--+--+--+-----------+--------+------------+----+
+    | RTP.payloadType |7 |1 |Bi| 0b1100000 | MSB(2) | LSB(5)     |    |
+    +-----------------+--+--+--+-----------+--------+------------+----+
+    | RTP.SeqNr       |16|1 |Bi| 0         | ignore | value-sent |    |
+    +-----------------+--+--+--+-----------+--------+------------+----+
+    | RTP.SSRC        |32|1 |Bi| 0         | ignore | value-sent |    |
+    +-----------------+--+--+--+-----------+--------+------------+----+
 
-                  Figure 11: RTP Base Header Rule Fragment
+              Table 12: Rule 8: RTP Base Header Rule Fragment
 
 6.3.  Compression Walkthrough
 
@@ -731,18 +833,18 @@ Table of Contents
    The compression proceeds as follows:
 
    1.  The compressor iterates through the rule set and attempts to
-       match each rule against the packet.  Rule 2 (Figure 5) is
-       selected as the initial rule because its IPv6 field descriptions
-       (Version, Diffserv, Flow Label, Hop Limit, prefixes, IIDs) all
-       match the packet.  Note that Rule 2 here uses branch rather than
-       a fixed Next Header value, so matching succeeds regardless of the
+       match each rule against the packet.  Rule 2 (Table 5) is selected
+       as the initial rule because its IPv6 field descriptions (Version,
+       Diffserv, Flow Label, Hop Limit, prefixes, IIDs) all match the
+       packet.  Note that Rule 2 here uses branch rather than a fixed
+       Next Header value, so matching succeeds regardless of the
        transport protocol.
 
    2.  IPv6 fields are matched and compressed.  The Next Header field
        (value 17) matches the first mapping entry.  The compressor
        encodes residual 0b000 and queues Rule 3 for processing.
 
-   3.  After completing Rule 2, the compressor loads Rule 3 (Figure 7).
+   3.  After completing Rule 2, the compressor loads Rule 3 (Table 8).
        UDP fields are matched and compressed.
 
    4.  The match-rule MO at the end of Rule 3 loads Rule 8 and attempts
@@ -750,7 +852,7 @@ Table of Contents
        first field.  All other RTP fields match.  The compressor encodes
        residual 0b00 and processes Rule 8.
 
-   5.  Rule 8 (Figure 11) compresses the RTP header fields.
+   5.  Rule 8 (Table 12) compresses the RTP header fields.
 
    The resulting compressed packet contains: Rule ID + IPv6 branch
    residual (3 bits) + UDP payload branch residual (2 bits) + RTP

@@ -1404,54 +1404,201 @@ in the referencing field description are not used for compression.
 Instead, the TVs and FLs of the referenced Rule N apply.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 <p id="section-4.1-4">The following example illustrates the use of ref(N). Consider a
 dedicated IPv6 compression rule (Rule 2):<a href="#section-4.1-4" class="pilcrow">¶</a></p>
-<span id="name-dedicated-ipv6-compression-"></span><div id="fig-rule2">
-<figure id="figure-1">
-          <div class="alignLeft art-text artwork" id="section-4.1-5.1">
-<pre>
-Rule 2
-+----------------+--+--+--+---------+--------+------------+
-| FID            |FL|FP|DI| TV      | MO     | CDA        |
-+----------------+--+--+--+---------+--------+------------+
-|IPv6 Version    |4 |1 |Bi|6        | ignore | not-sent   |
-|IPv6 Diffserv   |8 |1 |Bi|0        | equal  | not-sent   |
-|IPv6 Flow Label |20|1 |Bi|0        | equal  | not-sent   |
-|IPv6 Length     |16|1 |Bi|         | ignore | compute-*  |
-|IPv6 Next Header|8 |1 |Bi|17       | equal  | not-sent   |
-|IPv6 Hop Limit  |8 |1 |Bi|255      | ignore | not-sent   |
-|IPv6 DevPrefix  |64|1 |Bi|FE80::/64| equal  | not-sent   |
-|IPv6 DevIID     |64|1 |Bi|         | ignore | DevIID     |
-|IPv6 AppPrefix  |64|1 |Bi|FE80::/64| equal  | not-sent   |
-|IPv6 AppIID     |64|1 |Bi|::1      | equal  | not-sent   |
-+----------------+--+--+--+---------+--------+------------+
-</pre>
-</div>
-<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
-<a href="#name-dedicated-ipv6-compression-" class="selfRef">Dedicated IPv6 Compression Rule</a>
-          </figcaption></figure>
+<span id="name-rule-2-dedicated-ipv6-compr"></span><div id="fig-rule2">
+<table class="center" id="table-1">
+          <caption>
+<a href="#table-1" class="selfRef">Table 1</a>:
+<a href="#name-rule-2-dedicated-ipv6-compr" class="selfRef">Rule 2: Dedicated IPv6 Compression Rule</a>
+          </caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">FID</th>
+              <th class="text-left" rowspan="1" colspan="1">FL</th>
+              <th class="text-left" rowspan="1" colspan="1">FP</th>
+              <th class="text-left" rowspan="1" colspan="1">DI</th>
+              <th class="text-left" rowspan="1" colspan="1">TV</th>
+              <th class="text-left" rowspan="1" colspan="1">MO</th>
+              <th class="text-left" rowspan="1" colspan="1">CDA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 Version</td>
+              <td class="text-left" rowspan="1" colspan="1">4</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">6</td>
+              <td class="text-left" rowspan="1" colspan="1">ignore</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 Diffserv</td>
+              <td class="text-left" rowspan="1" colspan="1">8</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">0</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 Flow Label</td>
+              <td class="text-left" rowspan="1" colspan="1">20</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">0</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 Length</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">ignore</td>
+              <td class="text-left" rowspan="1" colspan="1">compute-*</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 Next Header</td>
+              <td class="text-left" rowspan="1" colspan="1">8</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">17</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 Hop Limit</td>
+              <td class="text-left" rowspan="1" colspan="1">8</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">255</td>
+              <td class="text-left" rowspan="1" colspan="1">ignore</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 DevPrefix</td>
+              <td class="text-left" rowspan="1" colspan="1">64</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">FE80::/64</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 DevIID</td>
+              <td class="text-left" rowspan="1" colspan="1">64</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">ignore</td>
+              <td class="text-left" rowspan="1" colspan="1">DevIID</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 AppPrefix</td>
+              <td class="text-left" rowspan="1" colspan="1">64</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">FE80::/64</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 AppIID</td>
+              <td class="text-left" rowspan="1" colspan="1">64</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">::1</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+          </tbody>
+        </table>
 </div>
 <p id="section-4.1-6">A UDP compression rule can then reference Rule 2 for the IPv6 portion:<a href="#section-4.1-6" class="pilcrow">¶</a></p>
-<span id="name-udp-rule-referencing-ipv6-r"></span><div id="fig-rule3">
-<figure id="figure-2">
-          <div class="alignLeft art-text artwork" id="section-4.1-7.1">
-<pre>
-Rule 3
-+--------------+--+--+--+---+-------+------------+
-| FID          |FL|FP|DI| TV| MO    | CDA        |
-+--------------+--+--+--+---+-------+------------+
-|IPv6 Rule     |  |1 |Bi|   | ignore| ref(2)     |
-+--------------+--+--+--+---+-------+------------+
-|UDP DevPort   |16|1 |Dw|123| equal | not-sent   |
-|UDP DevPort   |16|1 |Up|124| equal | not-sent   |
-|UDP AppPort   |16|1 |Dw|124| equal | not-sent   |
-|UDP AppPort   |16|1 |Up|123| equal | not-sent   |
-|UDP Length    |16|1 |Bi|   | ignore| compute-*  |
-|UDP checksum  |16|1 |Bi|   | ignore| compute-*  |
-+--------------+--+--+--+---+-------+------------+
-</pre>
-</div>
-<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
-<a href="#name-udp-rule-referencing-ipv6-r" class="selfRef">UDP Rule Referencing IPv6 Rule 2 via ref(N)</a>
-          </figcaption></figure>
+<span id="name-rule-3-udp-rule-referencing"></span><div id="fig-rule3">
+<table class="center" id="table-2">
+          <caption>
+<a href="#table-2" class="selfRef">Table 2</a>:
+<a href="#name-rule-3-udp-rule-referencing" class="selfRef">Rule 3: UDP Rule Referencing IPv6 Rule 2 via ref(N)</a>
+          </caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">FID</th>
+              <th class="text-left" rowspan="1" colspan="1">FL</th>
+              <th class="text-left" rowspan="1" colspan="1">FP</th>
+              <th class="text-left" rowspan="1" colspan="1">DI</th>
+              <th class="text-left" rowspan="1" colspan="1">TV</th>
+              <th class="text-left" rowspan="1" colspan="1">MO</th>
+              <th class="text-left" rowspan="1" colspan="1">CDA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 Rule</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">ignore</td>
+              <td class="text-left" rowspan="1" colspan="1">ref(2)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">UDP DevPort</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Dw</td>
+              <td class="text-left" rowspan="1" colspan="1">123</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">UDP DevPort</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Up</td>
+              <td class="text-left" rowspan="1" colspan="1">124</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">UDP AppPort</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Dw</td>
+              <td class="text-left" rowspan="1" colspan="1">124</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">UDP AppPort</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Up</td>
+              <td class="text-left" rowspan="1" colspan="1">123</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">UDP Length</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">ignore</td>
+              <td class="text-left" rowspan="1" colspan="1">compute-*</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">UDP checksum</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">ignore</td>
+              <td class="text-left" rowspan="1" colspan="1">compute-*</td>
+            </tr>
+          </tbody>
+        </table>
 </div>
 <p id="section-4.1-8">Similarly, a TCP compression rule can reuse the same IPv6 rule.
 However, since Rule 2 specifies Next Header = 17 (UDP) with MO =
@@ -1460,29 +1607,98 @@ would fail to match TCP packets (Next Header = 6). Instead, Rule 4
 uses ref-edit(2,1) to override the Next Header field description,
 demonstrating why ref-edit is necessary when a referenced rule
 contains a field value that differs for the referencing protocol:<a href="#section-4.1-8" class="pilcrow">¶</a></p>
-<span id="name-tcp-rule-referencing-ipv6-r"></span><div id="fig-rule4">
-<figure id="figure-3">
-          <div class="alignLeft art-text artwork" id="section-4.1-9.1">
-<pre>
-Rule 4
-+-----------------+--+--+--+---+-------+--------------+
-| FID             |FL|FP|DI| TV| MO    | CDA          |
-+-----------------+--+--+--+---+-------+--------------+
-|IPv6 Rule        |  |1 |Bi|   | ignore| ref-edit(2,1)|
-|IPv6 Next Header |8 |1 |Bi|6  | equal | not-sent     |
-+-----------------+--+--+--+---+-------+--------------+
-|TCP DevPort      |16|1 |Dw|321| equal | not-sent     |
-|TCP DevPort      |16|1 |Up|421| equal | not-sent     |
-|TCP AppPort      |16|1 |Dw|421| equal | not-sent     |
-|TCP AppPort      |16|1 |Up|321| equal | not-sent     |
-|TCP Length       |16|1 |Bi|   | ignore| compute-*    |
-|TCP checksum     |16|1 |Bi|   | ignore| compute-*    |
-+-----------------+--+--+--+---+-------+--------------+
-</pre>
-</div>
-<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
-<a href="#name-tcp-rule-referencing-ipv6-r" class="selfRef">TCP Rule Referencing IPv6 Rule 2 via ref-edit(N,M)</a>
-          </figcaption></figure>
+<span id="name-rule-4-tcp-rule-referencing"></span><div id="fig-rule4">
+<table class="center" id="table-3">
+          <caption>
+<a href="#table-3" class="selfRef">Table 3</a>:
+<a href="#name-rule-4-tcp-rule-referencing" class="selfRef">Rule 4: TCP Rule Referencing IPv6 Rule 2 via ref-edit(N,M)</a>
+          </caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">FID</th>
+              <th class="text-left" rowspan="1" colspan="1">FL</th>
+              <th class="text-left" rowspan="1" colspan="1">FP</th>
+              <th class="text-left" rowspan="1" colspan="1">DI</th>
+              <th class="text-left" rowspan="1" colspan="1">TV</th>
+              <th class="text-left" rowspan="1" colspan="1">MO</th>
+              <th class="text-left" rowspan="1" colspan="1">CDA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 Rule</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">ignore</td>
+              <td class="text-left" rowspan="1" colspan="1">ref-edit(2,1)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 Next Header</td>
+              <td class="text-left" rowspan="1" colspan="1">8</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">6</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">TCP DevPort</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Dw</td>
+              <td class="text-left" rowspan="1" colspan="1">321</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">TCP DevPort</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Up</td>
+              <td class="text-left" rowspan="1" colspan="1">421</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">TCP AppPort</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Dw</td>
+              <td class="text-left" rowspan="1" colspan="1">421</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">TCP AppPort</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Up</td>
+              <td class="text-left" rowspan="1" colspan="1">321</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">TCP Length</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">ignore</td>
+              <td class="text-left" rowspan="1" colspan="1">compute-*</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">TCP checksum</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">ignore</td>
+              <td class="text-left" rowspan="1" colspan="1">compute-*</td>
+            </tr>
+          </tbody>
+        </table>
 </div>
 <p id="section-4.1-10">In both cases, when the compressor/decompressor encounters a
 referencing CDA, it loads Rule 2 and applies it to the IPv6 header
@@ -1520,20 +1736,43 @@ the current rule.<a href="#section-4.2-3.3.1" class="pilcrow">¶</a></p>
         </ol>
 <p id="section-4.2-4">The following example modifies the AppIID field from Rule 2:<a href="#section-4.2-4" class="pilcrow">¶</a></p>
 <span id="name-using-ref-edit-to-override-"></span><div id="fig-refedit">
-<figure id="figure-4">
-          <div class="alignLeft art-text artwork" id="section-4.2-5.1">
-<pre>
-+--------------+---+--+--+---------+--------+--------------+
-| FID          |FL |FP|DI| TV      | MO     | CDA          |
-+--------------+---+--+--+---------+--------+--------------+
-|IPv6 Rule     |   |1 |Bi|         | ignore | ref-edit(2,1)|
-|IPv6 AppIID   |64 |1 |Bi| ::3     | equal  | not-sent     |
-+--------------+---+--+--+---------+--------+--------------+
-</pre>
-</div>
-<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<table class="center" id="table-4">
+          <caption>
+<a href="#table-4" class="selfRef">Table 4</a>:
 <a href="#name-using-ref-edit-to-override-" class="selfRef">Using ref-edit to Override AppIID in Rule 2</a>
-          </figcaption></figure>
+          </caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">FID</th>
+              <th class="text-left" rowspan="1" colspan="1">FL</th>
+              <th class="text-left" rowspan="1" colspan="1">FP</th>
+              <th class="text-left" rowspan="1" colspan="1">DI</th>
+              <th class="text-left" rowspan="1" colspan="1">TV</th>
+              <th class="text-left" rowspan="1" colspan="1">MO</th>
+              <th class="text-left" rowspan="1" colspan="1">CDA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 Rule</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">ignore</td>
+              <td class="text-left" rowspan="1" colspan="1">ref-edit(2,1)</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 AppIID</td>
+              <td class="text-left" rowspan="1" colspan="1">64</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">::3</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+            </tr>
+          </tbody>
+        </table>
 </div>
 <p id="section-4.2-6">Here, the decompressor loads Rule 2, locates the IPv6 AppIID field
 description, replaces its TV with ::3, and then applies the modified
@@ -1737,41 +1976,183 @@ field value equals one of the TV entries, and the index of the matching
 entry selects the corresponding branch argument.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2-2">The following example shows an IPv6 rule using match-mapping with
 branch on the Next Header field:<a href="#section-5.2-2" class="pilcrow">¶</a></p>
-<span id="name-ipv6-rule-with-branch-on-ne"></span><div id="fig-branch-ipv6">
-<figure id="figure-5">
-          <div class="alignLeft art-text artwork" id="section-5.2-3.1">
-<pre>
-Rule 2
-+----------------+--+--+--+---------+--------+--------------+------+
-| FID            |FL|FP|DI| TV      | MO     | CDA          | Sent |
-+----------------+--+--+--+---------+--------+--------------+------+
-|IPv6 Version    |4 |1 |Bi|6        | ignore | not-sent     |      |
-|IPv6 Diffserv   |8 |1 |Bi|0        | equal  | not-sent     |      |
-|IPv6 Flow Label |20|1 |Bi|0        | equal  | not-sent     |      |
-|IPv6 Length     |16|1 |Bi|         | ignore | compute-*    |      |
-|IPv6 Next Header|8 |1 |Bi|17       | mapping| branch(3)    |0b000 |
-|                |  |  |  |6        | mapping| branch(4)    |0b001 |
-|                |  |  |  |44       | mapping| branch(5)    |0b010 |
-|                |  |  |  |60       | mapping| branch(6)    |0b011 |
-|                |  |  |  |41       | mapping| branch(7)    |0b100 |
-|                |  |  |  |59       | mapping| branch(NULL) |0b101 |
-|IPv6 Hop Limit  |8 |1 |Bi|255      | ignore | not-sent     |      |
-|IPv6 DevPrefix  |64|1 |Bi|FE80::/64| equal  | not-sent     |      |
-|IPv6 DevIID     |64|1 |Bi|         | ignore | DevIID       |      |
-|IPv6 AppPrefix  |64|1 |Bi|FE80::/64| equal  | not-sent     |      |
-|IPv6 AppIID     |64|1 |Bi|::1      | equal  | not-sent     |      |
-+----------------+--+--+--+---------+--------+--------------+------+
-</pre>
-</div>
-<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
-<a href="#name-ipv6-rule-with-branch-on-ne" class="selfRef">IPv6 Rule with branch on Next Header</a>
-          </figcaption></figure>
+<span id="name-rule-2-ipv6-rule-with-branc"></span><div id="fig-branch-ipv6">
+<table class="center" id="table-5">
+          <caption>
+<a href="#table-5" class="selfRef">Table 5</a>:
+<a href="#name-rule-2-ipv6-rule-with-branc" class="selfRef">Rule 2: IPv6 Rule with branch on Next Header</a>
+          </caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">FID</th>
+              <th class="text-left" rowspan="1" colspan="1">FL</th>
+              <th class="text-left" rowspan="1" colspan="1">FP</th>
+              <th class="text-left" rowspan="1" colspan="1">DI</th>
+              <th class="text-left" rowspan="1" colspan="1">TV</th>
+              <th class="text-left" rowspan="1" colspan="1">MO</th>
+              <th class="text-left" rowspan="1" colspan="1">CDA</th>
+              <th class="text-left" rowspan="1" colspan="1">Sent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 Version</td>
+              <td class="text-left" rowspan="1" colspan="1">4</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">6</td>
+              <td class="text-left" rowspan="1" colspan="1">ignore</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 Diffserv</td>
+              <td class="text-left" rowspan="1" colspan="1">8</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">0</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 Flow Label</td>
+              <td class="text-left" rowspan="1" colspan="1">20</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">0</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 Length</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">ignore</td>
+              <td class="text-left" rowspan="1" colspan="1">compute-*</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 Next Header</td>
+              <td class="text-left" rowspan="1" colspan="1">8</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">17</td>
+              <td class="text-left" rowspan="1" colspan="1">mapping</td>
+              <td class="text-left" rowspan="1" colspan="1">branch(3)</td>
+              <td class="text-left" rowspan="1" colspan="1">0b000</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">6</td>
+              <td class="text-left" rowspan="1" colspan="1">mapping</td>
+              <td class="text-left" rowspan="1" colspan="1">branch(4)</td>
+              <td class="text-left" rowspan="1" colspan="1">0b001</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">44</td>
+              <td class="text-left" rowspan="1" colspan="1">mapping</td>
+              <td class="text-left" rowspan="1" colspan="1">branch(5)</td>
+              <td class="text-left" rowspan="1" colspan="1">0b010</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">60</td>
+              <td class="text-left" rowspan="1" colspan="1">mapping</td>
+              <td class="text-left" rowspan="1" colspan="1">branch(6)</td>
+              <td class="text-left" rowspan="1" colspan="1">0b011</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">41</td>
+              <td class="text-left" rowspan="1" colspan="1">mapping</td>
+              <td class="text-left" rowspan="1" colspan="1">branch(7)</td>
+              <td class="text-left" rowspan="1" colspan="1">0b100</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">59</td>
+              <td class="text-left" rowspan="1" colspan="1">mapping</td>
+              <td class="text-left" rowspan="1" colspan="1">branch(NULL)</td>
+              <td class="text-left" rowspan="1" colspan="1">0b101</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 Hop Limit</td>
+              <td class="text-left" rowspan="1" colspan="1">8</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">255</td>
+              <td class="text-left" rowspan="1" colspan="1">ignore</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 DevPrefix</td>
+              <td class="text-left" rowspan="1" colspan="1">64</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">FE80::/64</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 DevIID</td>
+              <td class="text-left" rowspan="1" colspan="1">64</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">ignore</td>
+              <td class="text-left" rowspan="1" colspan="1">DevIID</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 AppPrefix</td>
+              <td class="text-left" rowspan="1" colspan="1">64</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">FE80::/64</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">IPv6 AppIID</td>
+              <td class="text-left" rowspan="1" colspan="1">64</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1">::1</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+            </tr>
+          </tbody>
+        </table>
 </div>
 <p id="section-5.2-4">The mapping table for the Next Header field is:<a href="#section-5.2-4" class="pilcrow">¶</a></p>
 <span id="name-next-header-branch-mapping"></span><div id="tab-nh-mapping">
-<table class="center" id="table-1">
+<table class="center" id="table-6">
           <caption>
-<a href="#table-1" class="selfRef">Table 1</a>:
+<a href="#table-6" class="selfRef">Table 6</a>:
 <a href="#name-next-header-branch-mapping" class="selfRef">Next Header Branch Mapping</a>
           </caption>
 <thead>
@@ -1853,29 +2234,117 @@ reached. Therefore, a NULL entry <span class="bcp14">SHOULD</span> be placed las
 any entries after NULL will never be evaluated.<a href="#section-5.3-4" class="pilcrow">¶</a></p>
 <p id="section-5.3-5">The following example shows match-rule used in a UDP rule to branch
 into RTP or CoAP compression:<a href="#section-5.3-5" class="pilcrow">¶</a></p>
-<span id="name-udp-rule-with-match-rule-br"></span><div id="fig-match-rule">
-<figure id="figure-6">
-          <div class="alignLeft art-text artwork" id="section-5.3-6.1">
-<pre>
-Rule 3
-+--------------+--+--+--+----+-----------------+--------------+------+
-| FID          |FL|FP|DI| TV | MO              | CDA          | Sent |
-+--------------+--+--+--+----+-----------------+--------------+------+
-|UDP.SrcPort   |16|1 |Dw|1123| equal           | not-sent     |      |
-|UDP.SrcPort   |16|1 |Up|1124| equal           | not-sent     |      |
-|UDP.DstPort   |16|1 |Dw|1124| equal           | not-sent     |      |
-|UDP.DstPort   |16|1 |Up|1123| equal           | not-sent     |      |
-|UDP.Length    |16|1 |Bi|    | ignore          | compute-*    |      |
-|UDP.checksum  |16|1 |Bi|    | ignore          | compute-*    |      |
-|UDP.PayProto  |0 |1 |Bi|    | match-rule(8)   | branch(8)    | 0b00 |
-|              |  |  |  |    | match-rule(9)   | branch(9)    | 0b01 |
-|              |  |  |  |    | match-rule(NULL)| branch(NULL) | 0b10 |
-+--------------+--+--+--+----+-----------------+--------------+------+
-</pre>
-</div>
-<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
-<a href="#name-udp-rule-with-match-rule-br" class="selfRef">UDP Rule with match-rule Branching to RTP/CoAP</a>
-          </figcaption></figure>
+<span id="name-rule-3-udp-rule-with-match-"></span><div id="fig-match-rule">
+<table class="center" id="table-7">
+          <caption>
+<a href="#table-7" class="selfRef">Table 7</a>:
+<a href="#name-rule-3-udp-rule-with-match-" class="selfRef">Rule 3: UDP Rule with match-rule Branching to RTP/CoAP</a>
+          </caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">FID</th>
+              <th class="text-left" rowspan="1" colspan="1">FL</th>
+              <th class="text-left" rowspan="1" colspan="1">FP</th>
+              <th class="text-left" rowspan="1" colspan="1">DI</th>
+              <th class="text-left" rowspan="1" colspan="1">TV</th>
+              <th class="text-left" rowspan="1" colspan="1">MO</th>
+              <th class="text-left" rowspan="1" colspan="1">CDA</th>
+              <th class="text-left" rowspan="1" colspan="1">Sent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">UDP.SrcPort</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Dw</td>
+              <td class="text-left" rowspan="1" colspan="1">1123</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">UDP.SrcPort</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Up</td>
+              <td class="text-left" rowspan="1" colspan="1">1124</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">UDP.DstPort</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Dw</td>
+              <td class="text-left" rowspan="1" colspan="1">1124</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">UDP.DstPort</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Up</td>
+              <td class="text-left" rowspan="1" colspan="1">1123</td>
+              <td class="text-left" rowspan="1" colspan="1">equal</td>
+              <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">UDP.Length</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">ignore</td>
+              <td class="text-left" rowspan="1" colspan="1">compute-*</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">UDP.checksum</td>
+              <td class="text-left" rowspan="1" colspan="1">16</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">ignore</td>
+              <td class="text-left" rowspan="1" colspan="1">compute-*</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">UDP.PayProto</td>
+              <td class="text-left" rowspan="1" colspan="1">0</td>
+              <td class="text-left" rowspan="1" colspan="1">1</td>
+              <td class="text-left" rowspan="1" colspan="1">Bi</td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">match-rule(8)</td>
+              <td class="text-left" rowspan="1" colspan="1">branch(8)</td>
+              <td class="text-left" rowspan="1" colspan="1">0b00</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">match-rule(9)</td>
+              <td class="text-left" rowspan="1" colspan="1">branch(9)</td>
+              <td class="text-left" rowspan="1" colspan="1">0b01</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1"> </td>
+              <td class="text-left" rowspan="1" colspan="1">match-rule(NULL)</td>
+              <td class="text-left" rowspan="1" colspan="1">branch(NULL)</td>
+              <td class="text-left" rowspan="1" colspan="1">0b10</td>
+            </tr>
+          </tbody>
+        </table>
 </div>
 <p id="section-5.3-7">Here, after compressing the UDP header, the compressor attempts to
 match Rule 8 (RTP) against the UDP payload. If RTP matching succeeds,
@@ -1925,9 +2394,9 @@ mechanisms defined in this document.<a href="#section-6-1" class="pilcrow">¶</a
 when multiple transport protocols share the same IPv6 compression rule.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 <p id="section-6.1-2">Without referencing CDAs, compressing IPv6/UDP and IPv6/TCP requires
 two complete rules, each repeating 10 IPv6 field descriptions. With
-referencing CDAs, a single IPv6 rule (Rule 2 in <a href="#fig-rule2" class="auto internal xref">Figure 1</a>) is
-defined once and referenced by the UDP rule (Rule 3 in <a href="#fig-rule3" class="auto internal xref">Figure 2</a>)
-using ref(2), and the TCP rule (Rule 4 in <a href="#fig-rule4" class="auto internal xref">Figure 3</a>) using
+referencing CDAs, a single IPv6 rule (Rule 2 in <a href="#fig-rule2" class="auto internal xref">Table 1</a>) is
+defined once and referenced by the UDP rule (Rule 3 in <a href="#fig-rule3" class="auto internal xref">Table 2</a>)
+using ref(2), and the TCP rule (Rule 4 in <a href="#fig-rule4" class="auto internal xref">Table 3</a>) using
 ref-edit(2,1) to override the Next Header value from 17 to 6.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
 <p id="section-6.1-3">For a context with 3 IPv6 address variants and 4 transport/application
 protocols, the traditional approach requires 12 rules with 10
@@ -1944,7 +2413,7 @@ descriptions).<a href="#section-6.1-3" class="pilcrow">¶</a></p>
         </h3>
 <p id="section-6.2-1">This example demonstrates branch used with match-mapping to handle
 IPv6 packets with different next headers. Rule 2 in
-<a href="#fig-branch-ipv6" class="auto internal xref">Figure 5</a> uses the IPv6 Next Header field to branch into
+<a href="#fig-branch-ipv6" class="auto internal xref">Table 5</a> uses the IPv6 Next Header field to branch into
 different rule fragments for UDP, TCP, IPv6 Fragment Header,
 Destination Options, and IPv6-in-IPv6 tunneling.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
 <p id="section-6.2-2">The following rule fragments are referenced by the branch entries:<a href="#section-6.2-2" class="pilcrow">¶</a></p>
@@ -1953,29 +2422,117 @@ Destination Options, and IPv6-in-IPv6 tunneling.<a href="#section-6.2-1" class="
           <h4 id="name-udp-rule-fragment-rule-3">
 <a href="#section-6.2.1" class="section-number selfRef">6.2.1. </a><a href="#name-udp-rule-fragment-rule-3" class="section-name selfRef">UDP Rule Fragment (Rule 3)</a>
           </h4>
-<span id="name-udp-rule-fragment-with-payl"></span><div id="fig-ex-udp">
-<figure id="figure-7">
-            <div class="alignLeft art-text artwork" id="section-6.2.1-1.1">
-<pre>
-Rule 3
-+--------------+--+--+--+----+-----------------+--------------+------+
-| FID          |FL|FP|DI| TV | MO              | CDA          | Sent |
-+--------------+--+--+--+----+-----------------+--------------+------+
-|UDP.SrcPort   |16|1 |Dw|1123| equal           | not-sent     |      |
-|UDP.SrcPort   |16|1 |Up|1124| equal           | not-sent     |      |
-|UDP.DstPort   |16|1 |Dw|1124| equal           | not-sent     |      |
-|UDP.DstPort   |16|1 |Up|1123| equal           | not-sent     |      |
-|UDP.Length    |16|1 |Bi|    | ignore          | compute-*    |      |
-|UDP.checksum  |16|1 |Bi|    | ignore          | compute-*    |      |
-|UDP.PayProto  |0 |1 |Bi|    | match-rule(8)   | branch(8)    | 0b00 |
-|              |  |  |  |    | match-rule(9)   | branch(9)    | 0b01 |
-|              |  |  |  |    | match-rule(NULL)| branch(NULL) | 0b10 |
-+--------------+--+--+--+----+-----------------+--------------+------+
-</pre>
-</div>
-<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
-<a href="#name-udp-rule-fragment-with-payl" class="selfRef">UDP Rule Fragment with Payload Branching</a>
-            </figcaption></figure>
+<span id="name-rule-3-udp-rule-fragment-wi"></span><div id="fig-ex-udp">
+<table class="center" id="table-8">
+            <caption>
+<a href="#table-8" class="selfRef">Table 8</a>:
+<a href="#name-rule-3-udp-rule-fragment-wi" class="selfRef">Rule 3: UDP Rule Fragment with Payload Branching</a>
+            </caption>
+<thead>
+              <tr>
+                <th class="text-left" rowspan="1" colspan="1">FID</th>
+                <th class="text-left" rowspan="1" colspan="1">FL</th>
+                <th class="text-left" rowspan="1" colspan="1">FP</th>
+                <th class="text-left" rowspan="1" colspan="1">DI</th>
+                <th class="text-left" rowspan="1" colspan="1">TV</th>
+                <th class="text-left" rowspan="1" colspan="1">MO</th>
+                <th class="text-left" rowspan="1" colspan="1">CDA</th>
+                <th class="text-left" rowspan="1" colspan="1">Sent</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">UDP.SrcPort</td>
+                <td class="text-left" rowspan="1" colspan="1">16</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Dw</td>
+                <td class="text-left" rowspan="1" colspan="1">1123</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">UDP.SrcPort</td>
+                <td class="text-left" rowspan="1" colspan="1">16</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Up</td>
+                <td class="text-left" rowspan="1" colspan="1">1124</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">UDP.DstPort</td>
+                <td class="text-left" rowspan="1" colspan="1">16</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Dw</td>
+                <td class="text-left" rowspan="1" colspan="1">1124</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">UDP.DstPort</td>
+                <td class="text-left" rowspan="1" colspan="1">16</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Up</td>
+                <td class="text-left" rowspan="1" colspan="1">1123</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">UDP.Length</td>
+                <td class="text-left" rowspan="1" colspan="1">16</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">ignore</td>
+                <td class="text-left" rowspan="1" colspan="1">compute-*</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">UDP.checksum</td>
+                <td class="text-left" rowspan="1" colspan="1">16</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">ignore</td>
+                <td class="text-left" rowspan="1" colspan="1">compute-*</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">UDP.PayProto</td>
+                <td class="text-left" rowspan="1" colspan="1">0</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">match-rule(8)</td>
+                <td class="text-left" rowspan="1" colspan="1">branch(8)</td>
+                <td class="text-left" rowspan="1" colspan="1">0b00</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">match-rule(9)</td>
+                <td class="text-left" rowspan="1" colspan="1">branch(9)</td>
+                <td class="text-left" rowspan="1" colspan="1">0b01</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">match-rule(NULL)</td>
+                <td class="text-left" rowspan="1" colspan="1">branch(NULL)</td>
+                <td class="text-left" rowspan="1" colspan="1">0b10</td>
+              </tr>
+            </tbody>
+          </table>
 </div>
 <p id="section-6.2.1-2">Rule 3 compresses the UDP header and then uses match-rule to determine
 whether the payload is RTP (Rule 8), CoAP (Rule 9), or unknown (NULL).<a href="#section-6.2.1-2" class="pilcrow">¶</a></p>
@@ -1986,26 +2543,87 @@ whether the payload is RTP (Rule 8), CoAP (Rule 9), or unknown (NULL).<a href="#
           <h4 id="name-tcp-rule-fragment-rule-4">
 <a href="#section-6.2.2" class="section-number selfRef">6.2.2. </a><a href="#name-tcp-rule-fragment-rule-4" class="section-name selfRef">TCP Rule Fragment (Rule 4)</a>
           </h4>
-<span id="name-tcp-rule-fragment"></span><div id="fig-ex-tcp">
-<figure id="figure-8">
-            <div class="alignLeft art-text artwork" id="section-6.2.2-1.1">
-<pre>
-Rule 4
-+--------------+--+--+--+----+--------+------------+------+
-| FID          |FL|FP|DI| TV | MO     | CDA        | Sent |
-+--------------+--+--+--+----+--------+------------+------+
-|TCP.SrcPort   |16|1 |Dw|1321| equal  | not-sent   |      |
-|TCP.SrcPort   |16|1 |Up|1421| equal  | not-sent   |      |
-|TCP.DstPort   |16|1 |Dw|1421| equal  | not-sent   |      |
-|TCP.DstPort   |16|1 |Up|1321| equal  | not-sent   |      |
-|TCP.Length    |16|1 |Bi|    | ignore | compute-*  |      |
-|TCP.checksum  |16|1 |Bi|    | ignore | compute-*  |      |
-+--------------+--+--+--+----+--------+------------+------+
-</pre>
-</div>
-<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
-<a href="#name-tcp-rule-fragment" class="selfRef">TCP Rule Fragment</a>
-            </figcaption></figure>
+<span id="name-rule-4-tcp-rule-fragment"></span><div id="fig-ex-tcp">
+<table class="center" id="table-9">
+            <caption>
+<a href="#table-9" class="selfRef">Table 9</a>:
+<a href="#name-rule-4-tcp-rule-fragment" class="selfRef">Rule 4: TCP Rule Fragment</a>
+            </caption>
+<thead>
+              <tr>
+                <th class="text-left" rowspan="1" colspan="1">FID</th>
+                <th class="text-left" rowspan="1" colspan="1">FL</th>
+                <th class="text-left" rowspan="1" colspan="1">FP</th>
+                <th class="text-left" rowspan="1" colspan="1">DI</th>
+                <th class="text-left" rowspan="1" colspan="1">TV</th>
+                <th class="text-left" rowspan="1" colspan="1">MO</th>
+                <th class="text-left" rowspan="1" colspan="1">CDA</th>
+                <th class="text-left" rowspan="1" colspan="1">Sent</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">TCP.SrcPort</td>
+                <td class="text-left" rowspan="1" colspan="1">16</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Dw</td>
+                <td class="text-left" rowspan="1" colspan="1">1321</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">TCP.SrcPort</td>
+                <td class="text-left" rowspan="1" colspan="1">16</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Up</td>
+                <td class="text-left" rowspan="1" colspan="1">1421</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">TCP.DstPort</td>
+                <td class="text-left" rowspan="1" colspan="1">16</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Dw</td>
+                <td class="text-left" rowspan="1" colspan="1">1421</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">TCP.DstPort</td>
+                <td class="text-left" rowspan="1" colspan="1">16</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Up</td>
+                <td class="text-left" rowspan="1" colspan="1">1321</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">TCP.Length</td>
+                <td class="text-left" rowspan="1" colspan="1">16</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">ignore</td>
+                <td class="text-left" rowspan="1" colspan="1">compute-*</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">TCP.checksum</td>
+                <td class="text-left" rowspan="1" colspan="1">16</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">ignore</td>
+                <td class="text-left" rowspan="1" colspan="1">compute-*</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+            </tbody>
+          </table>
 </div>
 </section>
 </div>
@@ -2017,30 +2635,127 @@ Rule 4
 <p id="section-6.2.3-1">This rule handles the first fragment of a fragmented IPv6 packet.
 The Next Header field in the fragment header uses branch to determine
 what protocol follows.<a href="#section-6.2.3-1" class="pilcrow">¶</a></p>
-<span id="name-ipv6-first-fragment-rule-fr"></span><div id="fig-ex-frag">
-<figure id="figure-9">
-            <div class="alignLeft art-text artwork" id="section-6.2.3-2.1">
-<pre>
-Rule 5
-+----------------+--+--+--+---+--------+--------------+------+
-| FID            |FL|FP|DI| TV| MO     | CDA          | Sent |
-+----------------+--+--+--+---+--------+--------------+------+
-|Frag Next Header|8 |1 |Bi|17 | mapping| branch(3)    |0b000 |
-|                |  |  |  | 6 | mapping| branch(4)    |0b001 |
-|                |  |  |  |60 | mapping| branch(6)    |0b010 |
-|                |  |  |  |41 | mapping| branch(7)    |0b011 |
-|                |  |  |  |59 | mapping| branch(NULL) |0b100 |
-|Frag Reserved   |8 |1 |Bi|0  | ignore | not-sent     |      |
-|Frag Offset     |13|1 |Bi|0  | equal  | not-sent     |      |
-|Frag Res        |2 |1 |Bi|0  | equal  | not-sent     |      |
-|Frag M flag     |1 |1 |Bi|1  | equal  | not-sent     |      |
-|Frag Ident      |32|1 |Bi|   | ignore | value-sent   |      |
-+----------------+--+--+--+---+--------+--------------+------+
-</pre>
-</div>
-<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
-<a href="#name-ipv6-first-fragment-rule-fr" class="selfRef">IPv6 First Fragment Rule Fragment</a>
-            </figcaption></figure>
+<span id="name-rule-5-ipv6-first-fragment-"></span><div id="fig-ex-frag">
+<table class="center" id="table-10">
+            <caption>
+<a href="#table-10" class="selfRef">Table 10</a>:
+<a href="#name-rule-5-ipv6-first-fragment-" class="selfRef">Rule 5: IPv6 First Fragment Rule Fragment</a>
+            </caption>
+<thead>
+              <tr>
+                <th class="text-left" rowspan="1" colspan="1">FID</th>
+                <th class="text-left" rowspan="1" colspan="1">FL</th>
+                <th class="text-left" rowspan="1" colspan="1">FP</th>
+                <th class="text-left" rowspan="1" colspan="1">DI</th>
+                <th class="text-left" rowspan="1" colspan="1">TV</th>
+                <th class="text-left" rowspan="1" colspan="1">MO</th>
+                <th class="text-left" rowspan="1" colspan="1">CDA</th>
+                <th class="text-left" rowspan="1" colspan="1">Sent</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">Frag Next Header</td>
+                <td class="text-left" rowspan="1" colspan="1">8</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">17</td>
+                <td class="text-left" rowspan="1" colspan="1">mapping</td>
+                <td class="text-left" rowspan="1" colspan="1">branch(3)</td>
+                <td class="text-left" rowspan="1" colspan="1">0b000</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">6</td>
+                <td class="text-left" rowspan="1" colspan="1">mapping</td>
+                <td class="text-left" rowspan="1" colspan="1">branch(4)</td>
+                <td class="text-left" rowspan="1" colspan="1">0b001</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">60</td>
+                <td class="text-left" rowspan="1" colspan="1">mapping</td>
+                <td class="text-left" rowspan="1" colspan="1">branch(6)</td>
+                <td class="text-left" rowspan="1" colspan="1">0b010</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">41</td>
+                <td class="text-left" rowspan="1" colspan="1">mapping</td>
+                <td class="text-left" rowspan="1" colspan="1">branch(7)</td>
+                <td class="text-left" rowspan="1" colspan="1">0b011</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">59</td>
+                <td class="text-left" rowspan="1" colspan="1">mapping</td>
+                <td class="text-left" rowspan="1" colspan="1">branch(NULL)</td>
+                <td class="text-left" rowspan="1" colspan="1">0b100</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">Frag Reserved</td>
+                <td class="text-left" rowspan="1" colspan="1">8</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">0</td>
+                <td class="text-left" rowspan="1" colspan="1">ignore</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">Frag Offset</td>
+                <td class="text-left" rowspan="1" colspan="1">13</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">0</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">Frag Res</td>
+                <td class="text-left" rowspan="1" colspan="1">2</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">0</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">Frag M flag</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">Frag Ident</td>
+                <td class="text-left" rowspan="1" colspan="1">32</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">ignore</td>
+                <td class="text-left" rowspan="1" colspan="1">value-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+            </tbody>
+          </table>
 </div>
 </section>
 </div>
@@ -2052,34 +2767,167 @@ Rule 5
 <p id="section-6.2.4-1">For IPv6-in-IPv6 tunneling, the inner header may use different
 address prefixes than the outer header. This rule does not include
 IPv6-in-IPv6 as a further nesting option.<a href="#section-6.2.4-1" class="pilcrow">¶</a></p>
-<span id="name-inner-ipv6-header-rule-frag"></span><div id="fig-ex-inner-ipv6">
-<figure id="figure-10">
-            <div class="alignLeft art-text artwork" id="section-6.2.4-2.1">
-<pre>
-Rule 7
-+----------------+--+--+--+---------+--------+--------------+------+
-| FID            |FL|FP|DI| TV      | MO     | CDA          | Sent |
-+----------------+--+--+--+---------+--------+--------------+------+
-|IPv6 Version    |4 |1 |Bi|6        | ignore | not-sent     |      |
-|IPv6 Diffserv   |8 |1 |Bi|0        | equal  | not-sent     |      |
-|IPv6 Flow Label |20|1 |Bi|0        | equal  | not-sent     |      |
-|IPv6 Length     |16|1 |Bi|         | ignore | compute-*    |      |
-|IPv6 Next Header|8 |1 |Bi|17       | mapping| branch(3)    |0b000 |
-|                |  |  |  | 6       | mapping| branch(4)    |0b001 |
-|                |  |  |  |44       | mapping| branch(5)    |0b010 |
-|                |  |  |  |60       | mapping| branch(6)    |0b011 |
-|                |  |  |  |59       | mapping| branch(NULL) |0b100 |
-|IPv6 Hop Limit  |8 |1 |Bi|255      | ignore | not-sent     |      |
-|IPv6 DevPrefix  |64|1 |Bi|2001::/64| equal  | not-sent     |      |
-|IPv6 DevIID     |64|1 |Bi|         | ignore | DevIID       |      |
-|IPv6 AppPrefix  |64|1 |Bi|2001::/64| equal  | not-sent     |      |
-|IPv6 AppIID     |64|1 |Bi|::1      | equal  | not-sent     |      |
-+----------------+--+--+--+---------+--------+--------------+------+
-</pre>
-</div>
-<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
-<a href="#name-inner-ipv6-header-rule-frag" class="selfRef">Inner IPv6 Header Rule Fragment</a>
-            </figcaption></figure>
+<span id="name-rule-7-inner-ipv6-header-ru"></span><div id="fig-ex-inner-ipv6">
+<table class="center" id="table-11">
+            <caption>
+<a href="#table-11" class="selfRef">Table 11</a>:
+<a href="#name-rule-7-inner-ipv6-header-ru" class="selfRef">Rule 7: Inner IPv6 Header Rule Fragment</a>
+            </caption>
+<thead>
+              <tr>
+                <th class="text-left" rowspan="1" colspan="1">FID</th>
+                <th class="text-left" rowspan="1" colspan="1">FL</th>
+                <th class="text-left" rowspan="1" colspan="1">FP</th>
+                <th class="text-left" rowspan="1" colspan="1">DI</th>
+                <th class="text-left" rowspan="1" colspan="1">TV</th>
+                <th class="text-left" rowspan="1" colspan="1">MO</th>
+                <th class="text-left" rowspan="1" colspan="1">CDA</th>
+                <th class="text-left" rowspan="1" colspan="1">Sent</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">IPv6 Version</td>
+                <td class="text-left" rowspan="1" colspan="1">4</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">6</td>
+                <td class="text-left" rowspan="1" colspan="1">ignore</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">IPv6 Diffserv</td>
+                <td class="text-left" rowspan="1" colspan="1">8</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">0</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">IPv6 Flow Label</td>
+                <td class="text-left" rowspan="1" colspan="1">20</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">0</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">IPv6 Length</td>
+                <td class="text-left" rowspan="1" colspan="1">16</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">ignore</td>
+                <td class="text-left" rowspan="1" colspan="1">compute-*</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">IPv6 Next Header</td>
+                <td class="text-left" rowspan="1" colspan="1">8</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">17</td>
+                <td class="text-left" rowspan="1" colspan="1">mapping</td>
+                <td class="text-left" rowspan="1" colspan="1">branch(3)</td>
+                <td class="text-left" rowspan="1" colspan="1">0b000</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">6</td>
+                <td class="text-left" rowspan="1" colspan="1">mapping</td>
+                <td class="text-left" rowspan="1" colspan="1">branch(4)</td>
+                <td class="text-left" rowspan="1" colspan="1">0b001</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">44</td>
+                <td class="text-left" rowspan="1" colspan="1">mapping</td>
+                <td class="text-left" rowspan="1" colspan="1">branch(5)</td>
+                <td class="text-left" rowspan="1" colspan="1">0b010</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">60</td>
+                <td class="text-left" rowspan="1" colspan="1">mapping</td>
+                <td class="text-left" rowspan="1" colspan="1">branch(6)</td>
+                <td class="text-left" rowspan="1" colspan="1">0b011</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">59</td>
+                <td class="text-left" rowspan="1" colspan="1">mapping</td>
+                <td class="text-left" rowspan="1" colspan="1">branch(NULL)</td>
+                <td class="text-left" rowspan="1" colspan="1">0b100</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">IPv6 Hop Limit</td>
+                <td class="text-left" rowspan="1" colspan="1">8</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">255</td>
+                <td class="text-left" rowspan="1" colspan="1">ignore</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">IPv6 DevPrefix</td>
+                <td class="text-left" rowspan="1" colspan="1">64</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">2001::/64</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">IPv6 DevIID</td>
+                <td class="text-left" rowspan="1" colspan="1">64</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+                <td class="text-left" rowspan="1" colspan="1">ignore</td>
+                <td class="text-left" rowspan="1" colspan="1">DevIID</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">IPv6 AppPrefix</td>
+                <td class="text-left" rowspan="1" colspan="1">64</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">2001::/64</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">IPv6 AppIID</td>
+                <td class="text-left" rowspan="1" colspan="1">64</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">::1</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+            </tbody>
+          </table>
 </div>
 </section>
 </div>
@@ -2088,28 +2936,107 @@ Rule 7
           <h4 id="name-rtp-rule-fragment-rule-8">
 <a href="#section-6.2.5" class="section-number selfRef">6.2.5. </a><a href="#name-rtp-rule-fragment-rule-8" class="section-name selfRef">RTP Rule Fragment (Rule 8)</a>
           </h4>
-<span id="name-rtp-base-header-rule-fragme"></span><div id="fig-ex-rtp">
-<figure id="figure-11">
-            <div class="alignLeft art-text artwork" id="section-6.2.5-1.1">
-<pre>
-Rule 8
-+----------------+--+--+--+---------+--------+------------+------+
-| FID            |FL|FP|DI| TV      | MO     | CDA        | Sent |
-+----------------+--+--+--+---------+--------+------------+------+
-|RTP.version     |2 |1 |Bi|2        | equal  | not-sent   |      |
-|RTP.padding     |1 |1 |Bi|0        | equal  | not-sent   |      |
-|RTP.Extension   |1 |1 |Bi|0        | ignore | value-sent |      |
-|RTP.csrc-count  |4 |1 |Bi|0b00     | MSB(2) | LSB(2)     |      |
-|RTP.marker      |1 |1 |Bi|0        | ignore | value-sent |      |
-|RTP.payloadType |7 |1 |Bi|0b1100000| MSB(2) | LSB(5)     |      |
-|RTP.SeqNr       |16|1 |Bi|0        | ignore | value-sent |      |
-|RTP.SSRC        |32|1 |Bi|0        | ignore | value-sent |      |
-+----------------+--+--+--+---------+--------+------------+------+
-</pre>
-</div>
-<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
-<a href="#name-rtp-base-header-rule-fragme" class="selfRef">RTP Base Header Rule Fragment</a>
-            </figcaption></figure>
+<span id="name-rule-8-rtp-base-header-rule"></span><div id="fig-ex-rtp">
+<table class="center" id="table-12">
+            <caption>
+<a href="#table-12" class="selfRef">Table 12</a>:
+<a href="#name-rule-8-rtp-base-header-rule" class="selfRef">Rule 8: RTP Base Header Rule Fragment</a>
+            </caption>
+<thead>
+              <tr>
+                <th class="text-left" rowspan="1" colspan="1">FID</th>
+                <th class="text-left" rowspan="1" colspan="1">FL</th>
+                <th class="text-left" rowspan="1" colspan="1">FP</th>
+                <th class="text-left" rowspan="1" colspan="1">DI</th>
+                <th class="text-left" rowspan="1" colspan="1">TV</th>
+                <th class="text-left" rowspan="1" colspan="1">MO</th>
+                <th class="text-left" rowspan="1" colspan="1">CDA</th>
+                <th class="text-left" rowspan="1" colspan="1">Sent</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">RTP.version</td>
+                <td class="text-left" rowspan="1" colspan="1">2</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">2</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">RTP.padding</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">0</td>
+                <td class="text-left" rowspan="1" colspan="1">equal</td>
+                <td class="text-left" rowspan="1" colspan="1">not-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">RTP.Extension</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">0</td>
+                <td class="text-left" rowspan="1" colspan="1">ignore</td>
+                <td class="text-left" rowspan="1" colspan="1">value-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">RTP.csrc-count</td>
+                <td class="text-left" rowspan="1" colspan="1">4</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">0b00</td>
+                <td class="text-left" rowspan="1" colspan="1">MSB(2)</td>
+                <td class="text-left" rowspan="1" colspan="1">LSB(2)</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">RTP.marker</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">0</td>
+                <td class="text-left" rowspan="1" colspan="1">ignore</td>
+                <td class="text-left" rowspan="1" colspan="1">value-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">RTP.payloadType</td>
+                <td class="text-left" rowspan="1" colspan="1">7</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">0b1100000</td>
+                <td class="text-left" rowspan="1" colspan="1">MSB(2)</td>
+                <td class="text-left" rowspan="1" colspan="1">LSB(5)</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">RTP.SeqNr</td>
+                <td class="text-left" rowspan="1" colspan="1">16</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">0</td>
+                <td class="text-left" rowspan="1" colspan="1">ignore</td>
+                <td class="text-left" rowspan="1" colspan="1">value-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">RTP.SSRC</td>
+                <td class="text-left" rowspan="1" colspan="1">32</td>
+                <td class="text-left" rowspan="1" colspan="1">1</td>
+                <td class="text-left" rowspan="1" colspan="1">Bi</td>
+                <td class="text-left" rowspan="1" colspan="1">0</td>
+                <td class="text-left" rowspan="1" colspan="1">ignore</td>
+                <td class="text-left" rowspan="1" colspan="1">value-sent</td>
+                <td class="text-left" rowspan="1" colspan="1"> </td>
+              </tr>
+            </tbody>
+          </table>
 </div>
 </section>
 </div>
@@ -2139,7 +3066,7 @@ Rule 8
 <ol start="1" type="1" class="normal type-1" id="section-6.3-4">
 <li id="section-6.3-4.1">
             <p id="section-6.3-4.1.1">The compressor iterates through the rule set and attempts to match
-each rule against the packet. Rule 2 (<a href="#fig-branch-ipv6" class="auto internal xref">Figure 5</a>) is
+each rule against the packet. Rule 2 (<a href="#fig-branch-ipv6" class="auto internal xref">Table 5</a>) is
 selected as the initial rule because its IPv6 field descriptions
 (Version, Diffserv, Flow Label, Hop Limit, prefixes, IIDs) all
 match the packet. Note that Rule 2 here uses branch rather than
@@ -2153,7 +3080,7 @@ encodes residual 0b000 and queues Rule 3 for processing.<a href="#section-6.3-4.
 </li>
           <li id="section-6.3-4.3">
             <p id="section-6.3-4.3.1">After completing Rule 2, the compressor loads Rule 3
-(<a href="#fig-ex-udp" class="auto internal xref">Figure 7</a>). UDP fields are matched and compressed.<a href="#section-6.3-4.3.1" class="pilcrow">¶</a></p>
+(<a href="#fig-ex-udp" class="auto internal xref">Table 8</a>). UDP fields are matched and compressed.<a href="#section-6.3-4.3.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-6.3-4.4">
             <p id="section-6.3-4.4.1">The match-rule MO at the end of Rule 3 loads Rule 8 and attempts
@@ -2162,7 +3089,7 @@ first field. All other RTP fields match. The compressor encodes
 residual 0b00 and processes Rule 8.<a href="#section-6.3-4.4.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-6.3-4.5">
-            <p id="section-6.3-4.5.1">Rule 8 (<a href="#fig-ex-rtp" class="auto internal xref">Figure 11</a>) compresses the RTP header fields.<a href="#section-6.3-4.5.1" class="pilcrow">¶</a></p>
+            <p id="section-6.3-4.5.1">Rule 8 (<a href="#fig-ex-rtp" class="auto internal xref">Table 12</a>) compresses the RTP header fields.<a href="#section-6.3-4.5.1" class="pilcrow">¶</a></p>
 </li>
         </ol>
 <p id="section-6.3-5">The resulting compressed packet contains: Rule ID + IPv6 branch
