@@ -5,7 +5,7 @@ category: std
 ipr: trust200902
 docname: draft-corneo-schc-ctx-mgmt-latest
 submissiontype: IETF
-area: INT
+area: "Internet"
 workgroup: "Static Context Header Compression"
 pi: [toc, sortrefs, symrefs]
 
@@ -13,13 +13,11 @@ keyword:
  - SCHC
  - Context management
 
-<!-- venue: -->
-<!--   group: SCHC -->
-<!--   type: Working Group -->
-<!--   mail: WG@example.com -->
-<!--   arch: https://example.com/WG -->
-<!--   github: https://github.com/lorenzocorneo/draft-corneo-schc-ctx-mgmt -->
-<!--   latest: https://example.com/LATEST -->
+venue:
+  group: "Static Context Header Compression"
+  type: "Working Group"
+  mail: "schc@ietf.org"
+  github: "lorenzocorneo/draft-corneo-schc-ctx-mgmt"
 
 author:
   - name: Lorenzo Corneo
