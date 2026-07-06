@@ -2,13 +2,13 @@
 
 
 
-SCHC WG                                                        L. Corneo
+Static Context Header Compression                              L. Corneo
 Internet-Draft                                             M. Westerlund
 Intended status: Standards Track                                Ericsson
 Expires: 7 January 2027                                      6 July 2026
 
 
-
+                   SCHC Context Management Extensions
                    draft-corneo-schc-ctx-mgmt-latest
 
 Abstract
@@ -26,18 +26,16 @@ About This Document
 
    This note is to be removed before publishing as an RFC.
 
-   The latest revision of this draft can be found at
-   https://example.com/LATEST.  Status information for this document may
-   be found at https://datatracker.ietf.org/doc/draft-corneo-schc-ctx-
-   mgmt/.
+   Status information for this document may be found at
+   https://datatracker.ietf.org/doc/draft-corneo-schc-ctx-mgmt/.
 
-   Discussion of this document takes place on the SCHC Working Group
-   mailing list (mailto:WG@example.com), which is archived at
-   https://example.com/WG.
+   Discussion of this document takes place on the Static Context Header
+   Compression Working Group mailing list (mailto:schc@ietf.org), which
+   is archived at https://mailarchive.ietf.org/arch/browse/schc/.
+   Subscribe at https://www.ietf.org/mailman/listinfo/schc/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/https://github.com/lorenzocorneo/draft-corneo-
-   schc-ctx-mgmt.
+   https://github.com/lorenzocorneo/draft-corneo-schc-ctx-mgmt.
 
 Status of This Memo
 
@@ -822,22 +820,22 @@ Table of Contents
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/rfc/rfc2119>.
+              <https://www.rfc-editor.org/info/rfc2119>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
    [RFC8724]  Minaburo, A., Toutain, L., Gomez, C., Barthel, D., and JC.
               Zuniga, "SCHC: Generic Framework for Static Context Header
               Compression and Fragmentation", RFC 8724,
               DOI 10.17487/RFC8724, April 2020,
-              <https://www.rfc-editor.org/rfc/rfc8724>.
+              <https://www.rfc-editor.org/info/rfc8724>.
 
    [RFC9363]  Minaburo, A. and L. Toutain, "A YANG Data Model for Static
               Context Header Compression (SCHC)", RFC 9363,
               DOI 10.17487/RFC9363, March 2023,
-              <https://www.rfc-editor.org/rfc/rfc9363>.
+              <https://www.rfc-editor.org/info/rfc9363>.
 
 9.2.  Informative References
 
@@ -866,15 +864,19 @@ Table of Contents
    [RFC8200]  Deering, S. and R. Hinden, "Internet Protocol, Version 6
               (IPv6) Specification", STD 86, RFC 8200,
               DOI 10.17487/RFC8200, July 2017,
-              <https://www.rfc-editor.org/rfc/rfc8200>.
+              <https://www.rfc-editor.org/info/rfc8200>.
 
 Authors' Addresses
 
    Lorenzo Corneo
    Ericsson
+   FI- Jorvas
+   Finland
    Email: lorenzo.corneo@ericsson.com
 
 
    Magnus Westerlund
    Ericsson
+   Kista
+   Sweden
    Email: magnus.westerlund@ericsson.com

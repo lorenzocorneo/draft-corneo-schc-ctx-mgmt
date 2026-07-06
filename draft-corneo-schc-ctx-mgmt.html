@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title></title>
+<title>SCHC Context Management Extensions</title>
 <meta content="Lorenzo Corneo" name="author">
 <meta content="Magnus Westerlund" name="author">
 <meta content="
@@ -1051,7 +1051,7 @@ svg {
 <table class="ears">
 <thead><tr>
 <td class="left">Internet-Draft</td>
-<td class="center">SCHC Context Management Extensions</td>
+<td class="center">Context Management</td>
 <td class="right">July 2026</td>
 </tr></thead>
 <tfoot><tr>
@@ -1064,7 +1064,7 @@ svg {
 <div id="internal-metadata" class="document-information">
 <dl id="identifiers">
 <dt class="label-workgroup">Workgroup:</dt>
-<dd class="workgroup">SCHC WG</dd>
+<dd class="workgroup">Static Context Header Compression</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
 <dd class="internet-draft">draft-corneo-schc-ctx-mgmt-latest</dd>
 <dt class="label-published">Published:</dt>
@@ -1088,7 +1088,7 @@ svg {
 </dd>
 </dl>
 </div>
-<h1 id="title"></h1>
+<h1 id="title">SCHC Context Management Extensions</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document defines extensions to the Static Context Header
@@ -1105,14 +1105,14 @@ multi-layer protocol compression without combinatorial rule explosion.<a href="#
       </h2>
 <p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
 <p id="section-note.1-2">
-        The latest revision of this draft can be found at <span><a href="https://example.com/LATEST">https://example.com/LATEST</a></span>.
         Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-corneo-schc-ctx-mgmt/">https://datatracker.ietf.org/doc/draft-corneo-schc-ctx-mgmt/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
 <p id="section-note.1-3">
         Discussion of this document takes place on the
-        SCHC Working Group mailing list (<span><a href="mailto:WG@example.com">mailto:WG@example.com</a></span>),
-        which is archived at <span><a href="https://example.com/WG">https://example.com/WG</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+        Static Context Header Compression Working Group mailing list (<span><a href="mailto:schc@ietf.org">mailto:schc@ietf.org</a></span>),
+        which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/schc/">https://mailarchive.ietf.org/arch/browse/schc/</a></span>.
+        Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/schc/">https://www.ietf.org/mailman/listinfo/schc/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
 <p id="section-note.1-4">Source for this draft and an issue tracker can be found at
-        <span><a href="https://github.com/https://github.com/lorenzocorneo/draft-corneo-schc-ctx-mgmt">https://github.com/https://github.com/lorenzocorneo/draft-corneo-schc-ctx-mgmt</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
+        <span><a href="https://github.com/lorenzocorneo/draft-corneo-schc-ctx-mgmt">https://github.com/lorenzocorneo/draft-corneo-schc-ctx-mgmt</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -2264,19 +2264,19 @@ mechanisms <span class="bcp14">MUST</span> ensure integrity and authenticity of 
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
-<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
         <dd>
-<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8724">[RFC8724]</dt>
         <dd>
-<span class="refAuthor">Minaburo, A.</span>, <span class="refAuthor">Toutain, L.</span>, <span class="refAuthor">Gomez, C.</span>, <span class="refAuthor">Barthel, D.</span>, and <span class="refAuthor">JC. Zuniga</span>, <span class="refTitle">"SCHC: Generic Framework for Static Context Header Compression and Fragmentation"</span>, <span class="seriesInfo">RFC 8724</span>, <span class="seriesInfo">DOI 10.17487/RFC8724</span>, <time datetime="2020-04" class="refDate">April 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8724">https://www.rfc-editor.org/rfc/rfc8724</a>&gt;</span>. </dd>
+<span class="refAuthor">Minaburo, A.</span>, <span class="refAuthor">Toutain, L.</span>, <span class="refAuthor">Gomez, C.</span>, <span class="refAuthor">Barthel, D.</span>, and <span class="refAuthor">JC. Zuniga</span>, <span class="refTitle">"SCHC: Generic Framework for Static Context Header Compression and Fragmentation"</span>, <span class="seriesInfo">RFC 8724</span>, <span class="seriesInfo">DOI 10.17487/RFC8724</span>, <time datetime="2020-04" class="refDate">April 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8724">https://www.rfc-editor.org/info/rfc8724</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9363">[RFC9363]</dt>
       <dd>
-<span class="refAuthor">Minaburo, A.</span> and <span class="refAuthor">L. Toutain</span>, <span class="refTitle">"A YANG Data Model for Static Context Header Compression (SCHC)"</span>, <span class="seriesInfo">RFC 9363</span>, <span class="seriesInfo">DOI 10.17487/RFC9363</span>, <time datetime="2023-03" class="refDate">March 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9363">https://www.rfc-editor.org/rfc/rfc9363</a>&gt;</span>. </dd>
+<span class="refAuthor">Minaburo, A.</span> and <span class="refAuthor">L. Toutain</span>, <span class="refTitle">"A YANG Data Model for Static Context Header Compression (SCHC)"</span>, <span class="seriesInfo">RFC 9363</span>, <span class="seriesInfo">DOI 10.17487/RFC9363</span>, <time datetime="2023-03" class="refDate">March 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9363">https://www.rfc-editor.org/info/rfc9363</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -2301,7 +2301,7 @@ mechanisms <span class="bcp14">MUST</span> ensure integrity and authenticity of 
 <dd class="break"></dd>
 <dt id="RFC8200">[RFC8200]</dt>
       <dd>
-<span class="refAuthor">Deering, S.</span> and <span class="refAuthor">R. Hinden</span>, <span class="refTitle">"Internet Protocol, Version 6 (IPv6) Specification"</span>, <span class="seriesInfo">STD 86</span>, <span class="seriesInfo">RFC 8200</span>, <span class="seriesInfo">DOI 10.17487/RFC8200</span>, <time datetime="2017-07" class="refDate">July 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8200">https://www.rfc-editor.org/rfc/rfc8200</a>&gt;</span>. </dd>
+<span class="refAuthor">Deering, S.</span> and <span class="refAuthor">R. Hinden</span>, <span class="refTitle">"Internet Protocol, Version 6 (IPv6) Specification"</span>, <span class="seriesInfo">STD 86</span>, <span class="seriesInfo">RFC 8200</span>, <span class="seriesInfo">DOI 10.17487/RFC8200</span>, <time datetime="2017-07" class="refDate">July 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8200">https://www.rfc-editor.org/info/rfc8200</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -2316,6 +2316,9 @@ mechanisms <span class="bcp14">MUST</span> ensure integrity and authenticity of 
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Lorenzo Corneo</span></div>
 <div dir="auto" class="left"><span class="org">Ericsson</span></div>
+<div dir="auto" class="left">FI- <span class="locality">Jorvas</span>
+</div>
+<div dir="auto" class="left"><span class="country-name">Finland</span></div>
 <div class="email">
 <span>Email:</span>
 <a href="mailto:lorenzo.corneo@ericsson.com" class="email">lorenzo.corneo@ericsson.com</a>
@@ -2324,6 +2327,8 @@ mechanisms <span class="bcp14">MUST</span> ensure integrity and authenticity of 
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Magnus Westerlund</span></div>
 <div dir="auto" class="left"><span class="org">Ericsson</span></div>
+<div dir="auto" class="left"><span class="locality">Kista</span></div>
+<div dir="auto" class="left"><span class="country-name">Sweden</span></div>
 <div class="email">
 <span>Email:</span>
 <a href="mailto:magnus.westerlund@ericsson.com" class="email">magnus.westerlund@ericsson.com</a>
